@@ -14,6 +14,8 @@ $router = new Router();
 $router->register('GET', '/api/users', [New UsersController($db), 'readUsers']);
 $router->register('GET', '/api/users/(\d+)', [New UsersController($db), 'readUserById']);
 $router->register('POST', '/api/users', [New UsersController($db), 'addUser']);
+$router->register('PUT', '/api/users', [New UsersController($db), 'updateUser']);
+$router->register('DELETE', '/api/users', [New UsersController($db), 'deleteUser']);
 
 // Dispatch the request
 $router->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
