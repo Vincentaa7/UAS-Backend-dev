@@ -65,4 +65,27 @@ class UsersModel
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function updateUser($data)
+    {
+        try
+        {
+            $query = "UPDATE " . $this->table_name . " SET first_name = ?, last_name = ?, address = ?, phone = ?, email = ?, note = ? WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $data['first_name']);
+            $stmt->bindParam(2, $data['last_name']);
+            $stmt->bindParam(3, $data['address']);
+            $stmt->bindParam(4, $data['phone']);
+            $stmt->bindParam(5, $data['email']);
+            $stmt->bindParam(6, $data['note']);
+            $stmt->bindParam(7, $data['id']);
+            $stmt->execute();
+            return $stmt->rowCount() > 0;
+        }
+        catch (PDOException $e)
+        {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
