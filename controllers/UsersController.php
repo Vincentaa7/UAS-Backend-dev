@@ -40,19 +40,5 @@ class UsersController
             return json_encode(array("message" => "Failed to add user to the database"));
         }
     }
-
-    public function updateUser()
-    {
-        $data = json_decode(file_get_contents("php://input"), true);
-        $result = $this->usersService->updateUser($data);
-        if ($result)
-        {
-            return json_encode(array("message" => "User updated successfully in the database"));
-        }
-        else
-        {
-            return json_encode(array("message" => "Failed to update user"));
-        }
-    }
-
+   
 }
