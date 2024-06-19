@@ -89,4 +89,21 @@ class UsersModel
         }
     }
 
+    public function deleteUser($id)
+    {
+        try
+        {
+            $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(1, $id);
+            $stmt->execute();
+            return $stmt->rowCount() > 0;
+        }
+        catch (PDOException $e)
+        {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }
