@@ -1,0 +1,57 @@
+curl -X GET http://localhost/simple-rest-api/api/users
+
+curl -X 
+    \ -Method 'POST' 
+    \ -Headers @{'Content-Type' = 'application/json; charset=utf-8'}
+    \ -Body '{"first_name":"test user","last_name":"test","address":"denpasar","phone":"(+62)8725463324", "email":test@example.com, "note":"blabla"}' 
+    \ http://localhost/simple-rest-api/api/users
+
+curl POST 
+   \ -d '{"first_name":"test user","last_name":"test","address":"denpasar","phone":"(+62)8725463324", "email":test@example.com, "note":"blabla"}'
+   \ http://localhost/simple-rest-api/api/users
+
+
+# HTTP Insert Request on Windows
+$body = @{
+    id = "7"
+    first_name = "Wayan"
+    last_name = "Smith"
+    address = "tabanan"
+    phone = "(+62)123456789"
+    email = "wayan@example.com"
+    note = "teste123"
+} | ConvertTo-Json
+$response = Invoke-WebRequest -Uri http://localhost/simple-rest-api/api/users -Method POST -Body $body -ContentType "application/json"
+Write-Output $response.Content
+
+# HTTP Select Request on Windows
+# HTTP Update Request on Windows
+$body = @{
+    id = "6"
+} | ConvertTo-Json
+$response = Invoke-WebRequest -Uri http://localhost/simple-rest-api/api/users -Method GET -Body $body -ContentType "application/json"
+Write-Output $response.Content
+
+# HTTP Update Request on Windows
+$body = @{
+    id = "6"
+    first_name = "Alice"
+    last_name = "Smith"
+    address = "denpasar"
+    phone = "(+62)123456789"
+    email = "alice@example.com"
+    note = "teste123"
+} | ConvertTo-Json
+$response = Invoke-WebRequest -Uri http://localhost/simple-rest-api/api/users -Method PUT -Body $body -ContentType "application/json"
+Write-Output $response.Content
+
+# HTTP Delete Request on Windows
+$body = @{
+    id = "6"
+} | ConvertTo-Json
+$response = Invoke-WebRequest -Uri http://localhost/simple-rest-api/api/users -Method DELETE -Body $body -ContentType "application/json"
+Write-Output $response.Content
+
+
+
+Invoke-WebRequest -Uri http://localhost/simple-rest-api/api/users -Method POST -Body '{"first_name":"test user","last_name":"test","address":"denpasar","phone":"(+62)8725463324", "email":test@example.com, "note":"blabla"}'
