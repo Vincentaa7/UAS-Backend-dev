@@ -58,4 +58,14 @@ class UsersService
     {
         return $this->usersModel->insertUser($data);
     }
+
+    public function updateUser($data)
+    {
+        return $this->usersModel->updateUser($data);
+    }
+
+    public function deleteUser($id)
+    {
+        return $this->usersModel->deleteUser($id);
+    }
 }
